@@ -16,4 +16,10 @@ public class BSTrees {
 	else
 		return rheight;
 	}
+	public static boolean isLeafNode(BSTNode node) {
+		if((node.getLeft() == null) && (node.getRight() == null))
+			return true;
+		else
+			return false;
+	}
 }

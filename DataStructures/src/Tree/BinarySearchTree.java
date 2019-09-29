@@ -107,6 +107,8 @@ public class BinarySearchTree {
 		return search(root,data);
 	}
 	private boolean search(BSTNode node,int data) {
+		if(node == null)
+			return false;
 		if(node.getData() == data)
 			return true;
 		else if((node.getLeft() !=null) && (node.getData() > data)) {
@@ -146,5 +148,42 @@ public class BinarySearchTree {
 	}
 	public int height() {
 		return BSTrees.height(root);
-	}			
+	}
+	public void delete(int data) {
+		if(this.search(data) == true)
+			root = delete(root,data);
+		else
+			System.out.println("The element is not presemt in the tree");
+	}
+	private BSTNode delete(BSTNode node,int data) {
+		if(node == null) {
+			return null;
+		}else if(node.getData() == data) {
+			if(BSTrees.isLeafNode(node))
+				return null;
+			else if((node.getRight() != null) && (node.getLeft() != null)){
+				BSTNode leftElementRoot = node.getRight();
+				BSTNode prevLeftRoot = node.getLeft();
+				BSTNode tempElement = node;
+				while(!BSTrees.isLeafNode(tempElement.getRight())) {
+					tempElement = tempElement.getRight();
+				}
+				BSTNode replacingElement = tempElement.getRight();
+				tempElement.setRight(null);
+				replacingElement.setLeft(leftElementRoot);
+				node = replacingElement;
+				BSTNode lastLeftElement = leftElementRoot;
+				while(lastLeftElement.getLeft() != null) {
+					lastLeftElement = lastLeftElement.getLeft();
+				}
+				lastLeftElement.setLeft(prevLeftRoot);
+			}
+		}else {
+			if(node.getData() > data)
+				node.setLeft(delete(node.getLeft(),data));
+			else
+				node.setRight(delete(node.getRight(),data));
+		}
+		return node;
+	}	
 }
