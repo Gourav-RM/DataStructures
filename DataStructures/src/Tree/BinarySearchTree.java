@@ -146,15 +146,5 @@ public class BinarySearchTree {
 	}
 	public int height() {
 		return BSTrees.height(root);
-	}	
-	
-	public static void main(String[] args) {
-		BinarySearchTree bsTree = new BinarySearchTree();
-		bsTree.insert(700);
-		bsTree.insert(400);
-		bsTree.insert(500);
-		bsTree.insert(800);
-		System.out.println(bsTree.height());
-	}
-	
+	}			
 }
