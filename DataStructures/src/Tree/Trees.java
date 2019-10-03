@@ -1,7 +1,8 @@
 package Tree;
 
-public class BSTrees {
-	public static int height(BSTNode node) {
+public class Trees {
+	
+	public static int height(Node node) {
 		int lheight = 1;
 		int rheight = 1;
 		if(node == null)
@@ -16,10 +17,11 @@ public class BSTrees {
 	else
 		return rheight;
 	}
-	public static boolean isLeafNode(BSTNode node) {
+	public static boolean isLeafNode(Node node) {
 		if((node.getLeft() == null) && (node.getRight() == null))
 			return true;
 		else
 			return false;
 	}
+
 }
