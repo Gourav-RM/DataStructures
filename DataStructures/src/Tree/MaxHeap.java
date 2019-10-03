@@ -2,44 +2,15 @@ package Tree;
 
 import java.util.Arrays;
 
-class HNode {
-	HNode left;
-	HNode right;
-	int data;
-
+class HNode extends Node{
 	public HNode(int data) {
 		super();
 		this.data = data;
 	}
-
-	public HNode getLeft() {
-		return left;
-	}
-
-	public void setLeft(HNode left) {
-		this.left = left;
-	}
-
-	public HNode getRight() {
-		return right;
-	}
-
-	public void setRight(HNode right) {
-		this.right = right;
-	}
-
-	public int getData() {
-		return data;
-	}
-
-	public void setData(int data) {
-		this.data = data;
-	}
 }
 
-public class MaxHeap {
+public class MaxHeap extends Tree{
 	int[] heap;
-	HNode root;
 
 	MaxHeap(int[] arr) {
 		heap = arr;
@@ -65,7 +36,7 @@ public class MaxHeap {
 		}
 	}
 
-	private HNode convertToTree(HNode node, int[] heap, int index) {
+	private Node convertToTree(Node node, int[] heap, int index) {
 		node = new HNode(heap[index]);
 		int leftChild = (2 * index) + 1;
 		int rightChild = (2 * index) + 2;
@@ -84,7 +55,7 @@ public class MaxHeap {
 		System.out.println("---------------------------------------");
 	}
 
-	private void inOrder(HNode node) {
+	private void inOrder(Node node) {
 		if (node == null) {
 			System.out.println("No data");
 		} else {
@@ -103,7 +74,7 @@ public class MaxHeap {
 		System.out.println("---------------------------------------");
 	}
 
-	private void preOrder(HNode node) {
+	private void preOrder(Node node) {
 		if (node == null) {
 			System.out.println("No data");
 		} else {
@@ -122,7 +93,7 @@ public class MaxHeap {
 		System.out.println("---------------------------------------");
 	}
 
-	private void postOrder(HNode node) {
+	private void postOrder(Node node) {
 		if (node == null) {
 			System.out.println("No data");
 		} else {
@@ -142,7 +113,7 @@ public class MaxHeap {
 			return 0;
 	}
 
-	private int countNodes(HNode node) {
+	private int countNodes(Node node) {
 		int count = 0;
 		if (node != null)
 			count++;
@@ -166,7 +137,7 @@ public class MaxHeap {
 	}
 
 	public int height() {
-		return CBTrees.height(root);
+		return Trees.height(root);
 	}
 
 	public void delete() {
@@ -205,22 +176,4 @@ public class MaxHeap {
 		}
 		heap = Arrays.copyOfRange(heap, 0, heap.length - 2);
 	}
-
-	public static void main(String[] args) {
-		MaxHeap maxHeap = new MaxHeap(new int[] { 10, 20, 30, 40, 34, 60 });
-		for (int i = 0; i < maxHeap.heap.length; i++) {
-			System.out.print(maxHeap.heap[i] + " ");
-		}
-		maxHeap.inOrder();
-		maxHeap.preOrder();
-		maxHeap.postOrder();
-		System.out.println(maxHeap.countNodes());
-		System.out.println(maxHeap.height());
-		System.out.println(maxHeap.isEmpty());
-		maxHeap.delete();
-		for (int i = 0; i < maxHeap.heap.length; i++) {
-			System.out.print(maxHeap.heap[i] + " ");
-		}
-	}
-
 }

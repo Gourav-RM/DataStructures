@@ -1,48 +1,16 @@
 package Tree;
 
-class CBTNode{
-	CBTNode left;
-	CBTNode right;
-	int data;
-	
+class CBTNode extends Node{
 	CBTNode(int data){
 		this.data = data;
-	}
-
-	public CBTNode getLeft() {
-		return left;
-	}
-
-	public void setLeft(CBTNode left) {
-		this.left = left;
-	}
-
-	public CBTNode getRight() {
-		return right;
-	}
-
-	public void setRight(CBTNode right) {
-		this.right = right;
-	}
-
-	public int getData() {
-		return data;
-	}
-
-	public void setData(int data) {
-		this.data = data;
-	}
-	
+	}	
 }
 
-public class CompleteBinaryTree {
-	
-	CBTNode root;
-	
+public class CompleteBinaryTree extends Tree{
 	public void insert(int[] arr) {
 		root = insert(root,arr,0);
 	}
-	private CBTNode insert(CBTNode node,int[] arr,int index) {
+	private Node insert(Node node,int[] arr,int index) {
 		node = new CBTNode(arr[index]);
 		int leftChild = (2*index)+1;
 		int rightChild = (2*index)+2;
@@ -59,7 +27,7 @@ public class CompleteBinaryTree {
 		System.out.println();
 		System.out.println("---------------------------------------");
 	}
-	private void inOrder(CBTNode node) {
+	private void inOrder(Node node) {
 		if(node == null) {
 			System.out.println("No data");
 		}else {
@@ -76,7 +44,7 @@ public class CompleteBinaryTree {
 		System.out.println();
 		System.out.println("---------------------------------------");
 	}
-	private void preOrder(CBTNode node) {
+	private void preOrder(Node node) {
 		if(node == null) {
 			System.out.println("No data");
 		}else {
@@ -93,7 +61,7 @@ public class CompleteBinaryTree {
 		System.out.println();
 		System.out.println("---------------------------------------");
 	}
-	private void postOrder(CBTNode node) {
+	private void postOrder(Node node) {
 		if(node == null) {
 			System.out.println("No data");
 		}else {
@@ -105,47 +73,4 @@ public class CompleteBinaryTree {
 		}
 		
 	}
-	public int countNodes() {
-		if(root != null)
-			return countNodes(root);
-		else
-			return 0;
-	}
-	private int countNodes(CBTNode node) {
-		int count = 0;
-		if(node != null)
-			count++;
-		if(node.getLeft() != null)
-			count += countNodes(node.getLeft());
-		if(node.getRight() != null)
-			count += countNodes(node.getRight());
-		
-		return count;
-	}
-	public boolean isEmpty() {
-		if(root == null)
-			return true;
-		else
-			return false;
-	}
-	public void clear() {
-		root = null;
-	}
-	public int height() {
-		return CBTrees.height(root);
-	}
-	public static void main(String[] args) {
-		CompleteBinaryTree tree = new CompleteBinaryTree();
-		int[] arr = new int[] {10,20,30,40,50,60};
-		tree.insert(arr);
-		tree.inOrder();
-		tree.preOrder();
-		tree.postOrder();
-		System.out.println(tree.countNodes());
-		System.out.println(tree.height());
-		tree.clear();
-		System.out.println(tree.countNodes());
-		
-	}
-
 }
