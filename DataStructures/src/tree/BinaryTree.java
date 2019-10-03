@@ -1,5 +1,5 @@
 //Binary Tree implementation
-package Tree;
+package tree;
 
 class BTNode{
 	BTNode left;

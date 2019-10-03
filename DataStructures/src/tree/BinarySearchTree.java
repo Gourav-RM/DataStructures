@@ -1,4 +1,4 @@
-package Tree;
+package tree;
 
 class BSTNode extends Node{	
 	BSTNode(int data){

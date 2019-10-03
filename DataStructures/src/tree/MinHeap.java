@@ -1,18 +1,18 @@
-package Tree;
+package tree;
 
 import java.util.Arrays;
 
-class HNode extends Node{
-	public HNode(int data) {
+class MHNode extends Node{
+	public MHNode(int data) {
 		super();
 		this.data = data;
 	}
 }
 
-public class MaxHeap extends Tree{
+public class MinHeap extends Tree{
 	int[] heap;
 
-	MaxHeap(int[] arr) {
+	MinHeap(int[] arr) {
 		heap = arr;
 		insert();
 		root = convertToTree(root, heap, 0);
@@ -23,7 +23,7 @@ public class MaxHeap extends Tree{
 			int parentIndex = (i - 1) / 2;
 			int j = i;
 			while (parentIndex >= 0) {
-				if (heap[parentIndex] < heap[j]) {
+				if (heap[parentIndex] > heap[j]) {
 					int temp = heap[parentIndex];
 					heap[parentIndex] = heap[j];
 					heap[j] = temp;
@@ -37,7 +37,7 @@ public class MaxHeap extends Tree{
 	}
 
 	private Node convertToTree(Node node, int[] heap, int index) {
-		node = new HNode(heap[index]);
+		node = new MHNode(heap[index]);
 		int leftChild = (2 * index) + 1;
 		int rightChild = (2 * index) + 2;
 		if (leftChild <= heap.length - 1)
@@ -70,10 +70,10 @@ public class MaxHeap extends Tree{
 		while (rightChild < heap.length) {
 			int swappingIndex = 0;
 			if (rightChild > heap.length - 1) {
-				if (heap[index] < heap[leftChild])
+				if (heap[index] > heap[leftChild])
 					swappingIndex = leftChild;
 			} else {
-				swappingIndex = heap[leftChild] > heap[rightChild] ? leftChild : rightChild;
+				swappingIndex = heap[leftChild] < heap[rightChild] ? leftChild : rightChild;
 			}
 			int temp = heap[index];
 			heap[index] = heap[swappingIndex];
@@ -86,7 +86,7 @@ public class MaxHeap extends Tree{
 	}
 
 	public static void main(String[] args) {
-		MaxHeap maxHeap = new MaxHeap(new int[] { 10, 20, 30, 40, 34, 60 });
+		MinHeap maxHeap = new MinHeap(new int[] { 60,50,40,35,20,10 });
 		for (int i = 0; i < maxHeap.heap.length; i++) {
 			System.out.print(maxHeap.heap[i] + " ");
 		}

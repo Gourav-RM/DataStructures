@@ -1,4 +1,4 @@
-package Tree;
+package tree;
 
 class CBTNode extends Node{
 	CBTNode(int data){
