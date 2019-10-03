@@ -25,7 +25,7 @@ public class Stack {
 		this.top = top;
 	}
 	Stack(){
-		top = -1;
+		setTop(-1);
 	}
 	Stack(int[] stack){
 		this.stack = stack;
